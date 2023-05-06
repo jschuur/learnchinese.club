@@ -4,7 +4,7 @@ import tts from 'google-translate-tts';
 import { Configuration, CreateChatCompletionResponse, OpenAIApi } from 'openai';
 
 import { insertCard, updateCard } from '~/db/db';
-import { LanguageCard, languageCardSchema } from '../src/types';
+import { LanguageCard, languageCardSchema } from '~/db/schema';
 
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_APIKEY,

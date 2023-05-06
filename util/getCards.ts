@@ -12,7 +12,7 @@ import { generateCards } from './lib';
     await dbMigrate();
 
     spinner = ora('Generating cards...').start();
-    const cards = await generateCards(5, { difficulty: 'easy', hskLevel: 4 });
+    const cards = await generateCards(5, { difficulty: 'easy', hskLevel: 3 });
 
     spinner.succeed(`${pluralize('Card', cards.length, true)} generated!`);
   } catch (error) {
