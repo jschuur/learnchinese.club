@@ -23,14 +23,17 @@ dependencies:
     specifier: 10.4.14
     version: 10.4.14(postcss@8.4.23)
   axios:
-    specifier: ^1.4.0
-    version: 1.4.0
+    specifier: 0.26.1
+    version: 0.26.1
   dotenv:
     specifier: ^16.0.3
     version: 16.0.3
   drizzle-orm:
     specifier: ^0.25.4
     version: 0.25.4(@types/pg@8.6.6)(pg@8.10.0)
+  drizzle-zod:
+    specifier: ^0.4.1
+    version: 0.4.1(drizzle-orm@0.25.4)(zod@3.21.4)
   eslint:
     specifier: 8.39.0
     version: 8.39.0
@@ -845,16 +848,6 @@ packages:
       - debug
     dev: false
 
-  /axios@1.4.0:
-    resolution: {integrity: sha512-S4XCWMEmzvo64T9GfvQDOXgYRDJ/wsSZc7Jvdgx5u1sd0JwsuPLqb3SYmusag+edF6ziyMensPVqLTSc1PiSEA==}
-    dependencies:
-      follow-redirects: 1.15.2
-      form-data: 4.0.0
-      proxy-from-env: 1.1.0
-    transitivePeerDependencies:
-      - debug
-    dev: false
-
   /axobject-query@3.1.1:
     resolution: {integrity: sha512-goKlv8DZrK9hUh975fnHzhNIO4jUnFCfv/dszV5VwUGDFjI6vQ2VwoyjYjYNEbBE8AH87TduWP5uyDR1D+Iteg==}
     dependencies:
@@ -1317,6 +1310,16 @@ packages:
     dependencies:
       '@types/pg': 8.6.6
       pg: 8.10.0
+    dev: false
+
+  /drizzle-zod@0.4.1(drizzle-orm@0.25.4)(zod@3.21.4):
+    resolution: {integrity: sha512-0SoW2YwQwh+9QUNezzPAg179qO6OinbmLJFLjCjxfBpNDD39YH2hlSRK/rrkzskyBSORKraSrim/abynQ4k79w==}
+    peerDependencies:
+      drizzle-orm: '>=0.23.13'
+      zod: '*'
+    dependencies:
+      drizzle-orm: 0.25.4(@types/pg@8.6.6)(pg@8.10.0)
+      zod: 3.21.4
     dev: false
 
   /electron-to-chromium@1.4.385:
@@ -3267,10 +3270,6 @@ packages:
       loose-envify: 1.4.0
       object-assign: 4.1.1
       react-is: 16.13.1
-    dev: false
-
-  /proxy-from-env@1.1.0:
-    resolution: {integrity: sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==}
     dev: false
 
   /punycode@2.3.0:

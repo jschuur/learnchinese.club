@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "generate:cards": "tsx util/getCards.ts",
+    "generate:cards": "tsx util/generateCards.ts",
     "generate:migrations": "drizzle-kit generate:pg"
   },
   "dependencies": {
@@ -19,9 +19,10 @@
     "@types/react-dom": "18.2.4",
     "@vercel/analytics": "^1.0.1",
     "autoprefixer": "10.4.14",
-    "axios": "^1.4.0",
+    "axios": "0.26.1",
     "dotenv": "^16.0.3",
     "drizzle-orm": "^0.25.4",
+    "drizzle-zod": "^0.4.1",
     "eslint": "8.39.0",
     "eslint-config-next": "13.4.1",
     "google-translate-tts": "0.4.0-dev",

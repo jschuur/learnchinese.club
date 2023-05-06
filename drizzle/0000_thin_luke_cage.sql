@@ -1,7 +1,7 @@
-CREATE TABLE IF NOT EXISTS "cards" (
+CREATE TABLE IF NOT EXISTS "language_cards" (
 	"id" serial PRIMARY KEY NOT NULL,
 	"hsklevel" smallint NOT NULL,
-	"difficulty" text NOT NULL,
+	"cardLength" text,
 	"mandarin" text NOT NULL,
 	"english" text NOT NULL,
 	"pinyin" text NOT NULL,

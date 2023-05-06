@@ -1,11 +1,11 @@
 {
   "version": "5",
   "dialect": "pg",
-  "id": "6d830783-ca4c-4bce-95f0-dddb13c95a44",
+  "id": "1370e8e2-8729-4f97-9b47-d14f43e889ee",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
-    "cards": {
-      "name": "cards",
+    "language_cards": {
+      "name": "language_cards",
       "schema": "",
       "columns": {
         "id": {
@@ -20,11 +20,11 @@
           "primaryKey": false,
           "notNull": true
         },
-        "difficulty": {
-          "name": "difficulty",
+        "cardLength": {
+          "name": "cardLength",
           "type": "text",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
         },
         "mandarin": {
           "name": "mandarin",

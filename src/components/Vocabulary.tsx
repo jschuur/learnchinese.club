@@ -5,9 +5,8 @@ type Props = {
 };
 
 export default function Vocabulary({ vocabulary }: Props) {
-  console.log('vocabulary', vocabulary);
-
   if (!vocabulary || !Array.isArray(vocabulary)) return null;
+
   return (
     vocabulary && (
       <div className='flex flex-row flex-wrap items-center justify-center gap-2 py-3 al text-normal'>

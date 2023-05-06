@@ -3,7 +3,7 @@ import { drizzle } from 'drizzle-orm/node-postgres';
 import { migrate } from 'drizzle-orm/node-postgres/migrator';
 import { Pool } from 'pg';
 
-import { languageCardSchema, NewLanguageCard } from './schema';
+import { languageCard, NewLanguageCard } from './schema';
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
@@ -17,20 +17,20 @@ export async function dbMigrate() {
 
 export function insertCard(card: NewLanguageCard) {
   try {
-    return db.insert(languageCardSchema).values(card).onConflictDoNothing().returning();
+    return db.insert(languageCard).values(card).onConflictDoNothing().returning();
   } catch {
     console.log('Error inserting card');
   }
 }
 
 export function updateCard(id: number, data: Partial<NewLanguageCard>) {
-  return db.update(languageCardSchema).set(data).where(eq(languageCardSchema.id, id)).returning();
+  return db.update(languageCard).set(data).where(eq(languageCard.id, id)).returning();
 }
 
 export function getCards() {
   return db
     .select()
-    .from(languageCardSchema)
+    .from(languageCard)
     .orderBy(sql<number>`random()`)
     .limit(5);
 }
