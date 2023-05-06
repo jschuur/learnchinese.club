@@ -13,7 +13,7 @@ export default function LanguageCard({ card }: Props) {
     card && (
       <div className='pb-4'>
         <div className='flex flex-row items-center gap-2 text-2xl'>
-          <PlayButton soundFile={`/audio/mandarin-${card.id}.mp3`} /> {card.mandarin}
+          <PlayButton card={card} /> {card.mandarin}
         </div>
         <div className='pt-2 text-xl'>{card.pinyin}</div>
         <div className='text-xl'>{card.english}</div>
