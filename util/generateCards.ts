@@ -8,7 +8,7 @@ import { generateCards } from './lib';
   try {
     await dbMigrate();
 
-    const cardsCreated = await generateCards(5, { cardLength: 'medium', hskLevel: 1 });
+    const cardsCreated = await generateCards(5, { cardLength: 'medium', hskLevel: 3 });
 
     console.log(`${pluralize('card', cardsCreated, true)} generated!`);
   } catch (error) {
