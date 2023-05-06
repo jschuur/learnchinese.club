@@ -10,5 +10,7 @@ export default async function FlashCards() {
         <LanguageCard key={card.id} card={card} />
       ))}
     </>
-  ) : null;
+  ) : (
+    <span className='italic'>No flashcards found</span>
+  );
 }
