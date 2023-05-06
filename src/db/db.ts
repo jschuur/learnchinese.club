@@ -1,4 +1,4 @@
-import { eq } from 'drizzle-orm';
+import { eq, sql } from 'drizzle-orm';
 import { drizzle } from 'drizzle-orm/node-postgres';
 import { migrate } from 'drizzle-orm/node-postgres/migrator';
 import { Pool } from 'pg';
@@ -28,5 +28,9 @@ export function updateCard(id: number, data: Partial<NewLanguageCard>) {
 }
 
 export function getCards() {
-  return db.select().from(languageCardSchema);
+  return db
+    .select()
+    .from(languageCardSchema)
+    .orderBy(sql<number>`random()`)
+    .limit(5);
 }
