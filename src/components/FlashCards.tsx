@@ -1,5 +1,11 @@
 import LanguageCard from '~/components/LanguageCard';
-import { getCards } from '~/db/db';
+import { getRandomCards } from '~/db/db';
+
+async function getCards() {
+  'use server';
+
+  return getRandomCards();
+}
 
 export default async function FlashCards() {
   const cards = await getCards();
