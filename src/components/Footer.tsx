@@ -6,6 +6,7 @@ export default function Footer() {
         <a href='https://twitter.com/joostschuur'>@joostschuur</a> &middot;{' '}
         <a href='https://github.com/jschuur/ai-mandarin-flashcards'>GitHub</a>
       </div>
+      <div>Content powered by ChatGPT. Work in progress.</div>
     </footer>
   );
 }
