@@ -1,20 +1,23 @@
-import { createPool, sql } from '@vercel/postgres';
+import { sql as sqlVercel } from '@vercel/postgres';
 import { eq, sql as sqlDrizzle } from 'drizzle-orm';
-import { drizzle } from 'drizzle-orm/vercel-postgres';
-import { migrate } from 'drizzle-orm/vercel-postgres/migrator';
+import { drizzle as drizzleNode } from 'drizzle-orm/node-postgres';
+import { migrate as migrateNode } from 'drizzle-orm/node-postgres/migrator';
+import { drizzle as drizzleVercel } from 'drizzle-orm/vercel-postgres';
+import { migrate as migrateVercel } from 'drizzle-orm/vercel-postgres/migrator';
+
+import { Pool } from 'pg';
 
 import { languageCard, NewLanguageCard } from './schema';
 
-export const db = drizzle(
+const db =
   process.env.NODE_ENV === 'production'
-    ? sql
-    : createPool({
-        connectionString: process.env.POSTGRES_URL,
-      })
-);
+    ? drizzleVercel(sqlVercel)
+    : drizzleNode(new Pool({ connectionString: process.env.POSTGRES_URL }));
 
 export async function dbMigrate() {
-  await migrate(db, { migrationsFolder: './drizzle' });
+  if (process.env.NODE_ENV === 'production')
+    await migrateVercel(db, { migrationsFolder: './drizzle' });
+  else await migrateNode(db, { migrationsFolder: './drizzle' });
 }
 
 export function insertCard(card: NewLanguageCard) {
