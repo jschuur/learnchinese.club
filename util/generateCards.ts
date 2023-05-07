@@ -6,9 +6,14 @@ import { generateCards } from './lib';
 
 (async () => {
   try {
+    const [count, cardLength, hskLevel] = process.argv.slice(2);
+
     await dbMigrate();
 
-    const cardsCreated = await generateCards(5, { cardLength: 'medium', hskLevel: 3 });
+    const cardsCreated = await generateCards(parseInt(count, 10), {
+      cardLength,
+      hskLevel: parseInt(hskLevel, 10),
+    });
 
     console.log(`${pluralize('card', cardsCreated, true)} generated!`);
   } catch (error) {
