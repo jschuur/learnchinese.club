@@ -11,7 +11,9 @@
     "lint": "next lint",
     "generate:cards": "tsx util/generateCards.ts",
     "generate:cards:prod": "dotenv -e .env.production.local tsx util/generateCards.ts",
-    "generate:migrations": "drizzle-kit generate:pg"
+    "generate:migrations": "drizzle-kit generate:pg",
+    "seed": "tsx util/seed.ts",
+    "seed:prod": "dotenv -e .env.production.local tsx util/seed.ts"
   },
   "dependencies": {
     "@heroicons/react": "^2.0.17",
