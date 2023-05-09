@@ -1,5 +1,3 @@
-import WithSeparator from 'react-with-separator';
-
 type Props = {
   vocabulary: string[][];
 };
@@ -10,13 +8,11 @@ export default function Vocabulary({ vocabulary }: Props) {
   return (
     vocabulary && (
       <div className='flex flex-row flex-wrap items-center justify-center gap-2 py-3 al text-normal'>
-        <WithSeparator separator='&middot;'>
-          {vocabulary.map(([mandarin, pinyin, english]) => (
-            <span key={english}>
-              {mandarin} ({pinyin}): {english}
-            </span>
-          ))}
-        </WithSeparator>
+        {vocabulary.map(([mandarin, pinyin, english]) => (
+          <span className='pr-2' key={english}>
+            {mandarin} ({pinyin}): {english}
+          </span>
+        ))}
       </div>
     )
   );

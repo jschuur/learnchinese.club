@@ -13,7 +13,7 @@ export default function PlayButton({ card }: Props) {
 
   return (
     <SpeakerWaveIcon
-      className='w-10 cursor-pointer'
+      className='w-8 cursor-pointer sm:w-10'
       onClick={() => {
         playClipId(card.id);
         va.track('Play Audio', { clipId: card.id });

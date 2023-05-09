@@ -76,9 +76,6 @@ dependencies:
   react-dom:
     specifier: 18.2.0
     version: 18.2.0(react@18.2.0)
-  react-with-separator:
-    specifier: ^1.2.1
-    version: 1.2.1(react@18.2.0)
   server-only:
     specifier: ^0.0.1
     version: 0.0.1
@@ -3397,14 +3394,6 @@ packages:
 
   /react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
-    dev: false
-
-  /react-with-separator@1.2.1(react@18.2.0):
-    resolution: {integrity: sha512-18j3AsBnz5AGKTngUzMCo1+EthXxVzkCC1SjYvT2+tKXJw8dfoI0lqj1b3ApxgNiTHunkzKD5FKETkRiwv3NbA==}
-    peerDependencies:
-      react: '>=16'
-    dependencies:
-      react: 18.2.0
     dev: false
 
   /react@18.2.0:

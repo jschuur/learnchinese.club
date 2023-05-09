@@ -4,8 +4,8 @@ import Hydrate from '~/app/Hydrate';
 import FlashCards from '~/components/FlashCardList';
 import Footer from '~/components/Footer';
 import Header from '~/components/Header';
-import { getRandomCards } from '~/db/db';
 
+import { getRandomCards } from '~/db/db';
 import getQueryClient from '~/getQueryClient';
 
 export const revalidate = 1;
@@ -18,7 +18,7 @@ export default async function Home() {
 
   return (
     <Hydrate state={dehydratedState}>
-      <div className='flex flex-col justify-between px-20 py-8'>
+      <div className='container flex flex-col justify-between max-w-5xl px-4 py-8 m-auto sm:px-4'>
         <Header />
         <FlashCards />
         <Footer />
