@@ -1,5 +1,6 @@
 import { ArrowPathIcon } from '@heroicons/react/24/solid';
 import { useQueryClient } from '@tanstack/react-query';
+import va from '@vercel/analytics';
 import { ReactNode, useCallback } from 'react';
 
 type Props = {
@@ -11,6 +12,7 @@ function Refresh() {
 
   const refreshList = useCallback(() => {
     queryClient.invalidateQueries(['flashcards']);
+    va.track('Refresh Cards');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [queryClient]);
 
