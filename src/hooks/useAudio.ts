@@ -14,7 +14,9 @@ export default function useAudio() {
     }
   }, [clipId, localClips]);
 
-  useQuery([clipId], () => fetch(`/audio/${clipId}`), {
+  useQuery({
+    queryKey: ['audio', clipId],
+    queryFn: () => fetch(`/audio/${clipId}`),
     enabled: Boolean(clipId && localClips[clipId] === undefined),
     onSuccess: async (data) => {
       const audioData = await data.blob();

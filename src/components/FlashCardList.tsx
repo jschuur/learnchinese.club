@@ -1,6 +1,7 @@
 'use client';
 
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useEffect } from 'react';
 
 import FlashCard from '~/components/FlashCard';
 import RefreshCards from '~/components/RefreshCards';
@@ -15,10 +16,22 @@ const getCards = async () => {
 };
 
 export default function FlashCardList() {
+  const queryClient = useQueryClient();
   const { data: cards } = useQuery<LanguageCard[]>({
     queryKey: ['flashcards'],
     queryFn: getCards,
   });
+
+  useEffect(() => {
+    if (cards?.length) {
+      queryClient.prefetchQuery({
+        queryKey: ['audio', cards[0].id],
+        queryFn: () => fetch(`/audio/${cards[0].id}`),
+        staleTime: Infinity,
+        cacheTime: Infinity,
+      });
+    }
+  }, [cards, queryClient]);
 
   return cards?.length ? (
     <div>
