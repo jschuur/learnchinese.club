@@ -1,6 +1,7 @@
 import { InferModel } from 'drizzle-orm';
 import { pgTable, serial, smallint, text } from 'drizzle-orm/pg-core';
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod';
+import 'server-only';
 import { z } from 'zod';
 
 export const languageCard = pgTable('language_cards', {

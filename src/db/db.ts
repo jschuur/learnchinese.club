@@ -4,6 +4,7 @@ import { drizzle as drizzleNode } from 'drizzle-orm/node-postgres';
 import { migrate as migrateNode } from 'drizzle-orm/node-postgres/migrator';
 import { drizzle as drizzleVercel } from 'drizzle-orm/vercel-postgres';
 import { migrate as migrateVercel } from 'drizzle-orm/vercel-postgres/migrator';
+import 'server-only';
 
 import { Pool } from 'pg';
 
@@ -34,8 +35,20 @@ export function updateCard(id: number, data: Partial<NewLanguageCard>) {
 
 export function getRandomCards() {
   return db
-    .select()
+    .select({
+      id: languageCard.id,
+      hskLevel: languageCard.hskLevel,
+      mandarin: languageCard.mandarin,
+      english: languageCard.english,
+      pinyin: languageCard.pinyin,
+      vocabulary: languageCard.vocabulary,
+      grammar: languageCard.grammar,
+    })
     .from(languageCard)
     .orderBy(sqlDrizzle`random()`)
     .limit(5);
+}
+
+export function getCardAudio(id: number) {
+  return db.select({ audio: languageCard.audio }).from(languageCard).where(eq(languageCard.id, id));
 }

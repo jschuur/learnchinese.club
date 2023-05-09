@@ -1,5 +1,9 @@
 import { Analytics } from '@vercel/analytics/react';
 import { Inter } from 'next/font/google';
+import { ReactNode } from 'react';
+
+import Providers from '~/provider';
+
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -9,11 +13,15 @@ export const metadata = {
   description: 'Randomly Generated Mandarin Flashcards, powered by ChatGPT',
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang='en'>
-      <body className={`${inter.className} bg-red-100`}>{children}</body>
-      <Analytics />
+      <body className={`${inter.className} bg-red-50`}>
+        <Providers>
+          {children}
+          <Analytics />
+        </Providers>
+      </body>
     </html>
   );
 }
