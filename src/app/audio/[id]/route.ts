@@ -14,6 +14,7 @@ export async function GET(request: Request, { params }: { params: { id: string }
   return new Response(audioData, {
     headers: {
       'Content-Type': 'audio/mpeg',
+      'Cache-Control': `public, immutable`,
     },
   });
 }

@@ -3,6 +3,7 @@ import fs from 'fs';
 import tts from 'google-translate-tts';
 import { Configuration, CreateChatCompletionResponse, OpenAIApi } from 'openai';
 import ora from 'ora';
+import md5 from 'md5';
 
 import { insertCard, updateCard } from '~/db/db';
 import { LanguageCard, insertLanguageCardSchema } from '~/db/schema';
@@ -89,7 +90,7 @@ async function processCards(
 
       if (insertedCardId) {
         const audio = await saveAudio(insertedCardId, mandarin);
-        await updateCard(insertedCardId, { audio });
+        await updateCard(insertedCardId, { audio, audioHash: md5(audio) });
 
         cardsCreated++;
       }

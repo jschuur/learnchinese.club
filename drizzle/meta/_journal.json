@@ -7,6 +7,12 @@
       "version": "5",
       "when": 1683395912658,
       "tag": "0000_thin_luke_cage"
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1683703035195,
+      "tag": "0001_pretty_dexter_bennett"
     }
   ]
 }

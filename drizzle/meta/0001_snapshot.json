@@ -1,0 +1,84 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "id": "ae93c2eb-5be8-440f-8c8f-ced3483afb35",
+  "prevId": "1370e8e2-8729-4f97-9b47-d14f43e889ee",
+  "tables": {
+    "language_cards": {
+      "name": "language_cards",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "hsklevel": {
+          "name": "hsklevel",
+          "type": "smallint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "cardLength": {
+          "name": "cardLength",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "mandarin": {
+          "name": "mandarin",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "english": {
+          "name": "english",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "pinyin": {
+          "name": "pinyin",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "vocabulary": {
+          "name": "vocabulary",
+          "type": "text[][]",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "grammar": {
+          "name": "grammar",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "audio": {
+          "name": "audio",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "audioHash": {
+          "name": "audioHash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {}
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  }
+}
