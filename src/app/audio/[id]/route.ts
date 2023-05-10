@@ -1,4 +1,4 @@
-import { getCardAudio } from '~/db/db';
+import { getCardAudioBase64 } from '~/db/db';
 
 export async function GET(request: Request, { params }: { params: { id: string } }) {
   const cardId = Number(params.id);
@@ -6,10 +6,9 @@ export async function GET(request: Request, { params }: { params: { id: string }
 
   if (isNaN(cardId)) return notFoundResponse;
 
-  const cardAudio = await getCardAudio(Number(params.id));
-  if (!cardAudio?.[0]?.audio) return notFoundResponse;
+  const audioData = await getCardAudioBase64(Number(params.id));
 
-  const audioData = Buffer.from(cardAudio[0].audio, 'base64');
+  if (!audioData) return notFoundResponse;
 
   return new Response(audioData, {
     headers: {

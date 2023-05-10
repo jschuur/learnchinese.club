@@ -50,6 +50,11 @@ export function getRandomCards() {
     .limit(5);
 }
 
-export function getCardAudio(id: number) {
-  return db.select({ audio: languageCard.audio }).from(languageCard).where(eq(languageCard.id, id));
+export async function getCardAudioBase64(id: number) {
+  const res = await db
+    .select({ audio: languageCard.audio })
+    .from(languageCard)
+    .where(eq(languageCard.id, id));
+
+  return !res?.[0]?.audio ? null : Buffer.from(res[0].audio, 'base64');
 }
