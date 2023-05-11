@@ -1,38 +1,37 @@
 'use client';
 
-import { useQuery } from '@tanstack/react-query';
+import { useQueryClient } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 
 import { LanguageCard } from '~/db/schema';
 
-export const audioUrl = (card: LanguageCard) => `/audio/${card.id}?hash=${card.audioHash}`;
+export const fetchAudio = (card: LanguageCard) => () =>
+  fetch(`/audio/${card.id}?hash=${card.audioHash}`).then((res) => res.blob());
 export const audioQueryKey = (card: LanguageCard) => ['audio', card?.id];
 
 export default function useAudio() {
   const [playCard, setPlayCard] = useState<LanguageCard | null>(null);
-  const [localClips, setLocalClips] = useState<Record<number, Blob>>({});
+  const queryClient = useQueryClient();
 
   useEffect(() => {
-    if (playCard && localClips[playCard.id]) {
-      const audio = new Audio(URL.createObjectURL(localClips[playCard.id]));
+    async function playAudio() {
+      if (!playCard) return;
+
+      const cardAudio = await queryClient.fetchQuery({
+        queryKey: audioQueryKey(playCard),
+        queryFn: fetchAudio(playCard),
+        cacheTime: Infinity,
+        staleTime: Infinity,
+      });
+
+      const audio = new Audio(URL.createObjectURL(cardAudio));
       audio.play();
 
       setPlayCard(null);
     }
-  }, [playCard, localClips]);
 
-  useQuery({
-    queryKey: audioQueryKey(playCard!),
-    queryFn: () => playCard && fetch(audioUrl(playCard)),
-    enabled: Boolean(playCard?.id && localClips[playCard?.id] === undefined),
-    onSuccess: async (data) => {
-      if (!data) return;
-
-      const audioData = await data.blob();
-
-      setLocalClips((clips) => (playCard?.id ? { ...clips, [playCard?.id]: audioData } : clips));
-    },
-  });
+    playAudio();
+  }, [playCard, queryClient]);
 
   return setPlayCard;
 }

@@ -7,7 +7,10 @@ import FlashCard from '~/components/FlashCard';
 import RefreshCards from '~/components/RefreshCards';
 
 import { type LanguageCard } from '~/db/schema';
-import { audioQueryKey, audioUrl } from '~/hooks/useAudio';
+import { audioQueryKey, fetchAudio } from '~/hooks/useAudio';
+import useHasMounted from '~/hooks/useHasMounted';
+
+export const dynamic = 'force-dynamic';
 
 const getCards = async () => {
   const res = await fetch('/api/cards', { cache: 'no-store' });
@@ -17,22 +20,22 @@ const getCards = async () => {
 };
 
 export default function FlashCardList() {
+  const hasMounted = useHasMounted();
   const queryClient = useQueryClient();
+
   const { data: cards } = useQuery<LanguageCard[]>({
     queryKey: ['flashcards'],
     queryFn: getCards,
   });
 
   useEffect(() => {
-    if (cards?.length) {
+    if (hasMounted && cards && cards?.[0]?.id > 0) {
       queryClient.prefetchQuery({
         queryKey: audioQueryKey(cards[0]),
-        queryFn: () => fetch(audioUrl(cards[0])),
-        staleTime: Infinity,
-        cacheTime: Infinity,
+        queryFn: fetchAudio(cards[0]),
       });
     }
-  }, [cards, queryClient]);
+  }, [cards, queryClient, hasMounted]);
 
   return cards?.length ? (
     <div>
