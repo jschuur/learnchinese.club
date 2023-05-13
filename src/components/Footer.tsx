@@ -7,8 +7,8 @@ export default function Footer() {
         <a href='https://github.com/jschuur/learnchinese.club'>GitHub</a>
       </div>
       <div>
-        Work in progress: HSK level generation needs improving, add filter by HSK level, add click
-        to reveal interface.
+        <a href='https://github.com/users/jschuur/projects/5'>Work in progress</a>: HSK level
+        generation needs improving, add filter by HSK level, add click to reveal interface.
       </div>
     </footer>
   );
