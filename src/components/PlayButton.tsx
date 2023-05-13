@@ -1,22 +1,21 @@
 import { SpeakerWaveIcon } from '@heroicons/react/24/solid';
-import va from '@vercel/analytics';
+import { useAtom } from 'jotai';
 
 import { LanguageCard } from '~/db/schema';
-import useAudio from '~/hooks/useAudio';
+import { playCardAtom } from '~/store';
 
 type Props = {
   card: LanguageCard;
 };
 
 export default function PlayButton({ card }: Props) {
-  const playClipId = useAudio();
+  const [, setPlayCard] = useAtom(playCardAtom);
 
   return (
     <SpeakerWaveIcon
       className='w-8 cursor-pointer sm:w-10'
       onClick={() => {
-        playClipId(card);
-        va.track('Play Audio', { clipId: card.id });
+        setPlayCard(card);
       }}
     />
   );

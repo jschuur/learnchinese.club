@@ -7,7 +7,8 @@ import FlashCard from '~/components/FlashCard';
 import RefreshCards from '~/components/RefreshCards';
 
 import { type LanguageCard } from '~/db/schema';
-import { audioQueryKey, fetchAudio } from '~/hooks/useAudio';
+
+import useAudio, { audioQueryKey, fetchAudio } from '~/hooks/useAudio';
 import useHasMounted from '~/hooks/useHasMounted';
 
 export const dynamic = 'force-dynamic';
@@ -22,6 +23,7 @@ const getCards = async () => {
 export default function FlashCardList() {
   const hasMounted = useHasMounted();
   const queryClient = useQueryClient();
+  useAudio();
 
   const { data: cards } = useQuery<LanguageCard[]>({
     queryKey: ['flashcards'],
